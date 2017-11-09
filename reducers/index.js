@@ -5,7 +5,7 @@ function decks(state = {}, action) {
     case RECEIVE_DECKS:
       return {
         ...state,
-        ...action.decks,
+        decks: action.decks,
       }
     default:
       return state

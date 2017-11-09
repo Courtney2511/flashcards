@@ -1,25 +1,39 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
 
-export default class DeckList extends Component {
+class DeckList extends Component {
   componentDidMount() {
-    getDecks().then(result => console.log(result))
+    const { dispatch } = this.props
+    getDecks().then(decks => dispatch(receiveDecks(decks)))
   }
 
   render() {
+    const { decks } = this.props
     return (
       <View style={styles.container}>
-        <View style={styles.deck}>
-          <Text>Deck 1</Text>
-        </View>
-        <View>
-          <Text>Deck 2</Text>
-        </View>
+        {decks &&
+          Object.keys(decks).map(deck => {
+            return (
+              <View key={decks[deck].title} style={styles.deck}>
+                <Text>{decks[deck].title}</Text>
+              </View>
+            )
+          })}
       </View>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    decks: state.decks,
+  }
+}
+
+export default connect(mapStateToProps)(DeckList)
 
 const styles = StyleSheet.create({
   container: {
