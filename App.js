@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
+import { setSeedData } from './utils/_seedData'
 import DeckList from './components/deckList'
 
 function FlashStatusBar() {
@@ -12,6 +13,10 @@ function FlashStatusBar() {
 }
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setSeedData()
+  }
+
   render() {
     return (
       <View style={styles.container}>

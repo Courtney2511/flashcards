@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { getDecks } from '../utils/api'
 
 export default class DeckList extends Component {
+  componentDidMount() {
+    getDecks().then(result => console.log(result))
+  }
+
   render() {
     return (
       <View style={styles.container}>
