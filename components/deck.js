@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class Deck extends Component {
   render() {
     const { deck } = this.props
 
     return (
-      <View style={styles.container}>
-        <Text> {deck.title} </Text>
-        <Text> # of cards: {deck.questions.length}</Text>
-      </View>
+      <TouchableOpacity style={styles.container}>
+        <Text style={styles.font}> {deck.title} </Text>
+        <Text style={styles.font}> # of cards: {deck.questions.length}</Text>
+      </TouchableOpacity>
     )
   }
 }
@@ -22,5 +22,8 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     alignItems: 'center',
+  },
+  font: {
+    color: '#fff',
   },
 })
