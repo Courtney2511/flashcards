@@ -14,10 +14,16 @@ class DeckList extends Component {
   render() {
     const { decks } = this.props
     return (
-      <View>
+      <View style={styles.container}>
         {decks &&
           Object.keys(decks).map(deck => {
-            return <Deck key={decks[deck].title} deck={decks[deck]} />
+            return (
+              <Deck
+                key={decks[deck].title}
+                deck={decks[deck]}
+                navigate={this.props.navigation.navigate}
+              />
+            )
           })}
       </View>
     )
@@ -34,7 +40,9 @@ export default connect(mapStateToProps)(DeckList)
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#4286f4',
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
 })
 

@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { setSeedData } from './utils/_seedData'
 import DeckList from './components/deckList'
+import DeckDetail from './components/deckDetail'
+import { StackNavigator } from 'react-navigation'
 
 function FlashStatusBar() {
   return (
@@ -14,6 +16,13 @@ function FlashStatusBar() {
     </View>
   )
 }
+
+const MainNavigator = StackNavigator({
+  Home: { screen: DeckList },
+  DeckDetail: {
+    screen: DeckDetail,
+  },
+})
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -25,7 +34,7 @@ export default class App extends React.Component {
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
           <FlashStatusBar />
-          <DeckList />
+          <MainNavigator />
         </View>
       </Provider>
     )
@@ -34,7 +43,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
   },
 })
