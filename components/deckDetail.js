@@ -36,7 +36,10 @@ export default class DeckDetail extends Component {
             <Text style={{ color: '#fff' }}>Start Quiz</Text>
             <Entypo name="controller-play" style={{ color: '#fff' }} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AddCard')}
+            style={styles.button}
+          >
             <Text style={{ color: '#fff' }}>Add Card</Text>
             <Entypo name="plus" style={{ color: '#fff' }} />
           </TouchableOpacity>

@@ -8,6 +8,7 @@ import { setSeedData } from './utils/_seedData'
 import DeckList from './components/deckList'
 import DeckDetail from './components/deckDetail'
 import Quiz from './components/quiz'
+import AddCard from './components/addCard'
 import { StackNavigator } from 'react-navigation'
 
 function FlashStatusBar() {
@@ -24,6 +25,7 @@ const MainNavigator = StackNavigator({
     screen: DeckDetail,
   },
   Quiz: { screen: Quiz },
+  AddCard: { screen: AddCard },
 })
 
 export default class App extends React.Component {
