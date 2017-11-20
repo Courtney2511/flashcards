@@ -6,6 +6,14 @@ export default class Deck extends Component {
   render() {
     const { deck } = this.props
 
+    let card
+
+    if (deck.questions.length === 1) {
+      card = 'card'
+    } else {
+      card = 'cards'
+    }
+
     return (
       <TouchableOpacity
         onPress={() =>
@@ -16,7 +24,9 @@ export default class Deck extends Component {
         style={styles.container}
       >
         <Text style={styles.font}> {deck.title} </Text>
-        <Text style={styles.font}> # of cards: {deck.questions.length}</Text>
+        <Text style={styles.font}>
+          {deck.questions.length} {card}
+        </Text>
       </TouchableOpacity>
     )
   }
