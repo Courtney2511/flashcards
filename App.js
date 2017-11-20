@@ -7,6 +7,7 @@ import reducer from './reducers'
 import { setSeedData } from './utils/_seedData'
 import DeckList from './components/deckList'
 import DeckDetail from './components/deckDetail'
+import Quiz from './components/quiz'
 import { StackNavigator } from 'react-navigation'
 
 function FlashStatusBar() {
@@ -22,6 +23,7 @@ const MainNavigator = StackNavigator({
   DeckDetail: {
     screen: DeckDetail,
   },
+  Quiz: { screen: Quiz },
 })
 
 export default class App extends React.Component {

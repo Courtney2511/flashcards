@@ -5,7 +5,7 @@ import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons'
 export default class DeckDetail extends Component {
   render() {
     const { deck } = this.props.navigation.state.params
-    console.log(this.props.navigation.state.params)
+    const { navigation } = this.props
     let card
 
     if (deck.questions.length === 1) {
@@ -30,7 +30,7 @@ export default class DeckDetail extends Component {
         </View>
         <View style={styles.controls}>
           <TouchableOpacity
-            onPress={() => console.log('Quiz')}
+            onPress={() => navigation.navigate('Quiz')}
             style={styles.button}
           >
             <Text style={{ color: '#fff' }}>Start Quiz</Text>
