@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons'
 
 export default class DeckDetail extends Component {
   render() {
@@ -12,6 +12,19 @@ export default class DeckDetail extends Component {
           <Text style={styles.title}>{deck.title.toUpperCase()}</Text>
           <MaterialCommunityIcons style={styles.icon} name="cards" size={30} />
           <Text>{deck.questions.length} cards</Text>
+        </View>
+        <View style={styles.controls}>
+          <TouchableOpacity
+            onPress={() => console.log('Quiz')}
+            style={styles.button}
+          >
+            <Text>Start Quiz</Text>
+            <Entypo name="controller-play" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text>Add Card</Text>
+            <Entypo name="plus" />
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -38,5 +51,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+  },
+  controls: {
+    flexDirection: 'row',
+    paddingTop: 20,
+    alignItems: 'center',
+  },
+  button: {
+    borderRadius: 7,
+    backgroundColor: '#bc42f4',
+    margin: 20,
+    padding: 10,
   },
 })
