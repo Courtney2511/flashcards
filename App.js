@@ -9,6 +9,7 @@ import DeckList from './components/deckList'
 import DeckDetail from './components/deckDetail'
 import Quiz from './components/quiz'
 import AddCard from './components/addCard'
+import AddDeck from './components/addDeck'
 import { StackNavigator } from 'react-navigation'
 
 function FlashStatusBar() {
@@ -26,6 +27,7 @@ const MainNavigator = StackNavigator({
   },
   Quiz: { screen: Quiz },
   AddCard: { screen: AddCard },
+  AddDeck: { screen: AddDeck },
 })
 
 export default class App extends React.Component {

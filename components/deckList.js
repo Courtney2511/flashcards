@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
@@ -25,6 +25,11 @@ class DeckList extends Component {
               />
             )
           })}
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('AddDeck')}
+        >
+          <Text>Add New Deck</Text>
+        </TouchableOpacity>
       </View>
     )
   }
