@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons'
+import { connect } from 'react-redux'
 
-export default class DeckDetail extends Component {
+class DeckDetail extends Component {
   render() {
-    const { deck } = this.props.navigation.state.params
+    const { decks } = this.props
+    const { deckName } = this.props.navigation.state.params
     const { navigation } = this.props
+    const deck = decks[deckName]
     let card
 
     if (deck.questions.length === 1) {
@@ -37,7 +40,11 @@ export default class DeckDetail extends Component {
             <Entypo name="controller-play" style={{ color: '#fff' }} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate('AddCard')}
+            onPress={() =>
+              navigation.navigate('AddCard', {
+                deckName: this.props.navigation.state.params.deck.title,
+              })
+            }
             style={styles.button}
           >
             <Text style={{ color: '#fff' }}>Add Card</Text>
@@ -48,6 +55,14 @@ export default class DeckDetail extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    decks: state,
+  }
+}
+
+export default connect(mapStateToProps)(DeckDetail)
 
 const styles = StyleSheet.create({
   container: {

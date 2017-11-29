@@ -1,32 +1,60 @@
 import React, { Component } from 'react'
-import { View, TextInput, Text, TouchableHighlight } from 'react-native'
+import {
+  KeyboardAvoidingView,
+  View,
+  TextInput,
+  Text,
+  TouchableHighlight,
+} from 'react-native'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
 
-export default class AddDeck extends Component {
+class AddDeck extends Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
     }
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onSubmit() {
+    console.log(this.props)
+    this.props.addDeck(this.state.name)
+    console.log(this.props.navigation)
+    this.props.navigation.navigate('Home')
   }
 
   render() {
     return (
       <View>
-        <TextInput
-          style={{
-            height: 20,
-            borderColor: 'gray',
-            borderWidth: 1,
-            marginBottom: 10,
-          }}
-          value={this.state.name}
-          onChangeText={name => this.setState({ name })}
-          placeholder="Name"
-        />
-        <TouchableHighlight onPress={() => console.log('pressed')}>
-          <Text>ADD DECK</Text>
-        </TouchableHighlight>
+        <KeyboardAvoidingView>
+          <TextInput
+            style={{
+              height: 40,
+              borderColor: 'gray',
+              borderWidth: 1,
+              marginBottom: 10,
+            }}
+            value={this.state.name}
+            onChangeText={name => this.setState({ name })}
+            placeholder="Name"
+            keyboardType="default"
+            underlineColorAndroid="rgba(0,0,0,0)"
+          />
+          <TouchableHighlight onPress={this.onSubmit}>
+            <Text>ADD DECK</Text>
+          </TouchableHighlight>
+        </KeyboardAvoidingView>
       </View>
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addDeck: title => dispatch(addDeck(title)),
+  }
+}
+
+export default connect(() => ({}), mapDispatchToProps)(AddDeck)

@@ -19,8 +19,11 @@ export default class Deck extends Component {
         onPress={() =>
           console.log(
             'props',
-            this.props.navigate('DeckDetail', { deck: this.props.deck })
-          )}
+            this.props.navigate('DeckDetail', {
+              deckName: this.props.deck.title,
+            })
+          )
+        }
         style={styles.container}
       >
         <Text style={styles.font}> {deck.title} </Text>

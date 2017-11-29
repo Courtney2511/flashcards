@@ -11,6 +11,7 @@ import Quiz from './components/quiz'
 import AddCard from './components/addCard'
 import AddDeck from './components/addDeck'
 import { StackNavigator } from 'react-navigation'
+import { blue, white } from './utils/colors'
 
 function FlashStatusBar() {
   return (
@@ -21,7 +22,16 @@ function FlashStatusBar() {
 }
 
 const MainNavigator = StackNavigator({
-  Home: { screen: DeckList },
+  Home: {
+    screen: DeckList,
+    navigationOptions: {
+      title: 'Flashcards',
+      headerTintColor: blue,
+      headerStyle: {
+        backgroundColor: white,
+      },
+    },
+  },
   DeckDetail: {
     screen: DeckDetail,
   },
@@ -32,7 +42,7 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount() {
-    setSeedData()
+    // setSeedData()
   }
 
   render() {

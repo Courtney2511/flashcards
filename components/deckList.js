@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { Entypo } from '@expo/vector-icons'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
 import Deck from '../components/deck'
+import { blue, gold, white } from '../utils/colors'
 
 class DeckList extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props
-    getDecks().then(decks => dispatch(receiveDecks(decks)))
-  }
-
   render() {
     const { decks } = this.props
     return (
@@ -26,9 +23,11 @@ class DeckList extends Component {
             )
           })}
         <TouchableOpacity
+          style={styles.button}
           onPress={() => this.props.navigation.navigate('AddDeck')}
         >
-          <Text>Add New Deck</Text>
+          <Entypo name="plus" style={{ color: blue }} />
+          <Text>Add Deck</Text>
         </TouchableOpacity>
       </View>
     )
@@ -37,7 +36,7 @@ class DeckList extends Component {
 
 function mapStateToProps(state) {
   return {
-    decks: state.decks,
+    decks: state,
   }
 }
 
@@ -49,6 +48,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    marginTop: 30,
+    borderRadius: 7,
+    width: 80,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'gold',
   },
 })
 

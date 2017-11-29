@@ -1,0 +1,7 @@
+export const white = '#fff'
+export const red = '#DA1929'
+export const blue = '#002C3E'
+export const slate = '#82A3A8'
+export const sand = '#F2D39A'
+export const gold = '#EFAA23'
+export const gray = '#2B3638'
