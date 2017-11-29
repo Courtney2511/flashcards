@@ -42,7 +42,7 @@ class DeckDetail extends Component {
           <TouchableOpacity
             onPress={() =>
               navigation.navigate('AddCard', {
-                deckName: this.props.navigation.state.params.deck.title,
+                deckName: this.props.navigation.state.params.deckName,
               })
             }
             style={styles.button}

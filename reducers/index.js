@@ -27,6 +27,7 @@ const initialState = {
 }
 
 function decks(state = initialState, action) {
+  console.log(action)
   switch (action.type) {
     case RECEIVE_DECKS:
       return action.decks
@@ -38,14 +39,11 @@ function decks(state = initialState, action) {
     case ADD_CARD:
       return {
         ...state,
-        [action.payload.title]: {
-          ...state[action.payload.title],
+        [action.deckName]: {
+          ...state[action.deckName],
           questions: [
-            ...state[action.payload.title].questions,
-            {
-              question: action.payload.question,
-              answer: action.payload.answer,
-            },
+            ...state[action.deckName].questions,
+            { question: action.question, answer: action.answer },
           ],
         },
       }

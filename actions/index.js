@@ -16,13 +16,11 @@ export function addDeck(title) {
   }
 }
 
-export function addCard(title, question, answer) {
+export function addCard(deckName, question, answer) {
   return {
     type: ADD_CARD,
-    payload: title,
-    data: {
-      question: question,
-      answer: answer,
-    },
+    deckName,
+    question,
+    answer,
   }
 }

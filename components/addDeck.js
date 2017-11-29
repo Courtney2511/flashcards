@@ -26,6 +26,7 @@ class AddDeck extends Component {
   }
 
   render() {
+    console.log(this.props.deckName)
     return (
       <View>
         <KeyboardAvoidingView>

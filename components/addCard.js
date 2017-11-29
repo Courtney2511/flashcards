@@ -13,13 +13,13 @@ class AddCard extends Component {
   }
 
   onSubmit() {
-    const deckName = this.props.navigation.state.params
+    const { deckName } = this.props.navigation.state.params
     const { question, answer } = this.state
+    console.log('params', deckName, question, answer)
     this.props.addCard(deckName, question, answer)
   }
 
   render() {
-    console.log('deck:', this.props.navigation.state.params.deckName)
     return (
       <View>
         <TextInput
@@ -41,7 +41,7 @@ class AddCard extends Component {
           placeholder="Answer"
           multiline={true}
         />
-        <TouchableHighlight>
+        <TouchableHighlight onPress={() => this.onSubmit()}>
           <Text>ADD CARD</Text>
         </TouchableHighlight>
       </View>
@@ -51,7 +51,8 @@ class AddCard extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addCard: () => dispatch(addCard()),
+    addCard: (deckName, question, answer) =>
+      dispatch(addCard(deckName, question, answer)),
   }
 }
 
