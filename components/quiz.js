@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { red } from '../utils/colors'
 
 class Quiz extends Component {
   state = {
     index: 0,
     toggleCard: 'question',
+    correct: 0,
   }
 
   showAnswer() {
@@ -29,7 +31,18 @@ class Quiz extends Component {
     })
   }
 
+  correct() {
+    this.incrementIndex()
+    this.setState(state => {
+      return {
+        ...state,
+        correct: state.correct + 1,
+      }
+    })
+  }
+
   render() {
+    console.log('correct:', this.state.correct)
     const { decks } = this.props
     const { questions } = this.props.decks[
       this.props.navigation.state.params.deckName
@@ -37,7 +50,7 @@ class Quiz extends Component {
     if (this.state.index > questions.length - 1) {
       return (
         <View>
-          <Text>finished!</Text>
+          <Text>Correct Answers: {this.state.correct}</Text>
         </View>
       )
     }
@@ -47,11 +60,8 @@ class Quiz extends Component {
           <View style={styles.card}>
             <Text>{questions[this.state.index].question}</Text>
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.showAnswer()}
-          >
-            <Text>Show Answer</Text>
+          <TouchableOpacity onPress={() => this.showAnswer()}>
+            <Text style={styles.textButton}>Show Answer</Text>
           </TouchableOpacity>
         </View>
       )
@@ -62,12 +72,20 @@ class Quiz extends Component {
           <View style={styles.card}>
             <Text>{questions[this.state.index].answer}</Text>
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.incrementIndex()}
-          >
-            <Text>Next</Text>
-          </TouchableOpacity>
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.correct()}
+            >
+              <Text>Correct</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.incrementIndex()}
+            >
+              <Text>Incorrect</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )
     }
@@ -95,8 +113,17 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 7,
   },
+  row: {
+    flexDirection: 'row',
+  },
+  textButton: {
+    color: red,
+    marginTop: 10,
+  },
   button: {
     marginTop: 30,
+    marginRight: 5,
+    marginLeft: 5,
     borderRadius: 7,
     width: 80,
     height: 50,
