@@ -47,10 +47,21 @@ class Quiz extends Component {
     const { questions } = this.props.decks[
       this.props.navigation.state.params.deckName
     ]
+
+    if (questions.length == 0) {
+      return (
+        <View style={styles.container}>
+          <Text>Please add cards to start quiz</Text>
+        </View>
+      )
+    }
+
     if (this.state.index > questions.length - 1) {
       return (
         <View>
-          <Text>Correct Answers: {this.state.correct}</Text>
+          <Text>
+            Correct Answers: {this.state.correct} out of {questions.length}
+          </Text>
         </View>
       )
     }
