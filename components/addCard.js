@@ -17,6 +17,7 @@ class AddCard extends Component {
     const { question, answer } = this.state
     console.log('params', deckName, question, answer)
     this.props.addCard(deckName, question, answer)
+    this.props.navigation.goBack()
   }
 
   render() {
