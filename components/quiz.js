@@ -74,6 +74,9 @@ class Quiz extends Component {
           <TouchableOpacity onPress={() => this.showAnswer()}>
             <Text style={styles.textButton}>Show Answer</Text>
           </TouchableOpacity>
+          <Text>
+            Questions remaining: {questions.length - this.state.index}
+          </Text>
         </View>
       )
     }
