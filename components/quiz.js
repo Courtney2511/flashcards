@@ -77,7 +77,10 @@ class Quiz extends Component {
             >
               <Text>Play Again</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.goBack()}
+              style={styles.button}
+            >
               <Text>Back to Deck</Text>
             </TouchableOpacity>
           </View>
