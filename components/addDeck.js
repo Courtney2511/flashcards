@@ -15,25 +15,30 @@ class AddDeck extends Component {
     super(props)
     this.state = {
       name: '',
+      error: null,
     }
     this.onSubmit = this.onSubmit.bind(this)
   }
 
   onSubmit() {
+    if (this.state.name === '') {
+      this.setState({ error: 'Please enter name' })
+      return
+    }
     this.props.addDeck(this.state.name)
     this.props.navigation.navigate('Home')
   }
 
   render() {
+    const { error } = this.state
     return (
-      <KeyboardAvoidingView style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <TextInput
           style={{
             height: 40,
             borderColor: 'gray',
             borderWidth: 1,
             marginBottom: 10,
-            width: 70,
           }}
           value={this.state.name}
           onChangeText={name => this.setState({ name })}
@@ -41,6 +46,7 @@ class AddDeck extends Component {
           keyboardType="default"
           underlineColorAndroid="rgba(0,0,0,0)"
         />
+        {error && <Text style={styles.error}>{error}</Text>}
         <TouchableHighlight onPress={this.onSubmit} style={styles.button}>
           <Text>ADD DECK</Text>
         </TouchableHighlight>
@@ -59,7 +65,8 @@ styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    padding: 10,
     justifyContent: 'center',
   },
   button: {
@@ -67,9 +74,14 @@ styles = StyleSheet.create({
     borderRadius: 7,
     width: 80,
     height: 50,
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'gold',
+  },
+  error: {
+    color: 'red',
+    alignSelf: 'center',
   },
 })
 
