@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { red } from '../utils/colors'
+import { clearLocalNotifications, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
   state = {
@@ -67,6 +68,7 @@ class Quiz extends Component {
 
     // displays final score when questions have all been displayed
     if (this.state.index > questions.length - 1) {
+      clearLocalNotifications().then(setLocalNotification)
       return (
         <View style={styles.container}>
           <Text>
