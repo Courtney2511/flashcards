@@ -75,13 +75,15 @@ class Quiz extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.card}>
-            <Text>{questions[this.state.index].question}</Text>
+            <Text style={{ color: '#fff' }}>
+              {questions[this.state.index].question}
+            </Text>
           </View>
           <TouchableOpacity onPress={() => this.showAnswer()}>
             <Text style={styles.textButton}>Show Answer</Text>
           </TouchableOpacity>
           <Text>
-            Questions remaining: {questions.length - this.state.index}
+            {questions.length - (this.state.index + 1)} questions left
           </Text>
         </View>
       )
@@ -90,20 +92,22 @@ class Quiz extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.card}>
-            <Text>{questions[this.state.index].answer}</Text>
+            <Text style={{ color: '#fff' }}>
+              {questions[this.state.index].answer}
+            </Text>
           </View>
           <View style={styles.row}>
             <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, { backgroundColor: 'green' }]}
               onPress={() => this.correct()}
             >
-              <Text>Correct</Text>
+              <Text style={{ color: 'white' }}>Correct</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, { backgroundColor: 'red' }]}
               onPress={() => this.incrementIndex()}
             >
-              <Text>Incorrect</Text>
+              <Text style={{ color: 'white' }}>Incorrect</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -139,6 +143,7 @@ const styles = StyleSheet.create({
   textButton: {
     color: red,
     marginTop: 10,
+    padding: 20,
   },
   button: {
     marginTop: 30,
