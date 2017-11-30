@@ -56,6 +56,7 @@ class Quiz extends Component {
     ]
     const { navigate } = this.props.navigation
 
+    // displays if deck is empty
     if (questions.length == 0) {
       return (
         <View style={styles.container}>
@@ -64,6 +65,7 @@ class Quiz extends Component {
       )
     }
 
+    // displays final score when questions have all been displayed
     if (this.state.index > questions.length - 1) {
       return (
         <View style={styles.container}>
@@ -87,6 +89,8 @@ class Quiz extends Component {
         </View>
       )
     }
+
+    // displays question side of the card
     if (this.state.toggleCard === 'question') {
       return (
         <View style={styles.container}>
@@ -104,6 +108,8 @@ class Quiz extends Component {
         </View>
       )
     }
+
+    // displays answer side of the card
     if (this.state.toggleCard === 'answer') {
       return (
         <View style={styles.container}>

@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
+import { NavigationActions } from 'react-navigation'
 
 class AddDeck extends Component {
   constructor(props) {
@@ -21,15 +22,24 @@ class AddDeck extends Component {
   }
 
   onSubmit() {
+    const { addDeck, navigation } = this.props
     if (this.state.name === '') {
       this.setState({ error: 'Please enter name' })
       return
     }
-    this.props.addDeck(this.state.name)
-    this.props.navigation.navigate('DeckDetail', { deckName: this.state.name })
+    addDeck(this.state.name)
+
+    // reset stack to avoid returning to the form on go back
+    // const resetAction = NavigationActions.reset({
+    //   index: 0,
+    //   actions: [NavigationActions.navigate({ routeName: 'Home' })],
+    // })
+    // navigation.dispatch(resetAction)
+    navigation.navigate('DeckDetail', { deckName: this.state.name })
   }
 
   render() {
+    console.log(this.props.navigation)
     const { error } = this.state
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
