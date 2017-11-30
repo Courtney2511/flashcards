@@ -39,6 +39,16 @@ class Quiz extends Component {
     })
   }
 
+  resetQuiz() {
+    this.setState(state => {
+      return {
+        ...state,
+        index: 0,
+        correct: 0,
+      }
+    })
+  }
+
   render() {
     const { decks } = this.props
     const { questions } = this.props.decks[
@@ -58,10 +68,13 @@ class Quiz extends Component {
       return (
         <View style={styles.container}>
           <Text>
-            Correct Answers: {this.state.correct} out of {questions.length}
+            You got {this.state.correct} out of {questions.length} right!
           </Text>
           <View style={styles.row}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => this.resetQuiz()}
+              style={styles.button}
+            >
               <Text>Play Again</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
