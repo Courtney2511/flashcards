@@ -12,6 +12,7 @@ import AddCard from './components/addCard'
 import AddDeck from './components/addDeck'
 import { StackNavigator } from 'react-navigation'
 import { blue, white } from './utils/colors'
+import { setLocalNotification } from './utils/helpers'
 
 function FlashStatusBar() {
   return (
@@ -47,7 +48,7 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount() {
-    // setSeedData()
+    setLocalNotification()
   }
 
   render() {
