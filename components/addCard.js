@@ -15,7 +15,6 @@ class AddCard extends Component {
   onSubmit() {
     const { deckName } = this.props.navigation.state.params
     const { question, answer } = this.state
-    console.log('params', deckName, question, answer)
     this.props.addCard(deckName, question, answer)
     this.props.navigation.goBack()
   }

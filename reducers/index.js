@@ -27,7 +27,6 @@ const initialState = {
 }
 
 function decks(state = initialState, action) {
-  console.log(action)
   switch (action.type) {
     case RECEIVE_DECKS:
       return action.decks

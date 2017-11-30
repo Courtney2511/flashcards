@@ -11,14 +11,12 @@ class Quiz extends Component {
   }
 
   showAnswer() {
-    console.log('button pressed')
     this.setState(state => {
       return {
         ...state,
         toggleCard: 'answer',
       }
     })
-    console.log('made it here')
   }
 
   incrementIndex() {
@@ -42,11 +40,11 @@ class Quiz extends Component {
   }
 
   render() {
-    console.log('correct:', this.state.correct)
     const { decks } = this.props
     const { questions } = this.props.decks[
       this.props.navigation.state.params.deckName
     ]
+    const { navigate } = this.props.navigation
 
     if (questions.length == 0) {
       return (
@@ -58,10 +56,18 @@ class Quiz extends Component {
 
     if (this.state.index > questions.length - 1) {
       return (
-        <View>
+        <View style={styles.container}>
           <Text>
             Correct Answers: {this.state.correct} out of {questions.length}
           </Text>
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.button}>
+              <Text>Play Again</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text>Back to Deck</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )
     }
