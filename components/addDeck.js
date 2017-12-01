@@ -30,12 +30,17 @@ class AddDeck extends Component {
     addDeck(this.state.name)
 
     // reset stack to avoid returning to the form on go back
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [NavigationActions.navigate({ routeName: 'Home' })],
-    // })
-    // navigation.dispatch(resetAction)
-    navigation.navigate('DeckDetail', { deckName: this.state.name })
+    const resetAction = NavigationActions.reset({
+      index: 1,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' }),
+        NavigationActions.navigate({
+          routeName: 'DeckDetail',
+          params: { deckName: this.state.name },
+        }),
+      ],
+    })
+    navigation.dispatch(resetAction)
   }
 
   render() {

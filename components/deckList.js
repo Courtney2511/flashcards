@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Entypo } from '@expo/vector-icons'
 import { receiveDecks } from '../actions'
-import { getDecks } from '../utils/api'
 import Deck from '../components/deck'
 import { blue, gold, white } from '../utils/colors'
 
